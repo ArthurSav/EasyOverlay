@@ -1,0 +1,56 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error view"
+        android:id="@+id/btnError"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading view"
+        android:id="@+id/btnLoading"
+        android:layout_above="@+id/container"
+        android:layout_toRightOf="@+id/btnError"
+        android:layout_toEndOf="@+id/btnError" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Clear"
+        android:id="@+id/btnClear"
+        android:layout_alignBottom="@+id/btnLoading"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <io.c0nnector.easyoverlay.RelativeOverlay
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/btnError"
+        android:layout_centerHorizontal="true"
+        android:background="#ffbd37"
+        android:id="@+id/container">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="This is your main view"
+            android:id="@+id/textView"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:background="#d32f2f"
+            android:padding="20dp" />
+    </io.c0nnector.easyoverlay.RelativeOverlay>
+
+</RelativeLayout>
