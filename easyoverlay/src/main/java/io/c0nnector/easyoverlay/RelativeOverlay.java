@@ -142,7 +142,7 @@ public class RelativeOverlay extends RelativeLayout {
     public void showErrorView(@DrawableRes int imageId, String errorMessage){
 
         //slide animation
-        setOverlayAnimation(new Slide(Gravity.BOTTOM));
+        setOverlayAnimation(new Slide(Gravity.TOP));
 
         ViewError viewError = new ViewError(getContext());
 
