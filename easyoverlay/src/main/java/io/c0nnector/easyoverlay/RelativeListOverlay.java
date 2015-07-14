@@ -15,8 +15,14 @@ import io.c0nnector.easyoverlay.views.ViewEmpty;
  */
 public class RelativeListOverlay extends RelativeOverlay implements EasyRecyclerView.AdapterChangeListener {
 
+    /**
+     * Any view to be injected and called with showCustomView()
+     */
     private View customView;
 
+    /**
+     * Shows when there are not items in the adapter
+     */
     private ViewEmpty viewEmpty;
 
     /**
@@ -61,10 +67,15 @@ public class RelativeListOverlay extends RelativeOverlay implements EasyRecycler
         }
     }
 
+    /**
+     * Called when the recyclerview adapter changes items
+     * @param adapter
+     * @param i
+     */
     @Override
     public void onAdapterChange(RecyclerView.Adapter adapter, int i) {
 
-        //no items - add empty view if set
+        //no items - add empty view, if set
         if (i == 0) {
 
             if (hasEmptyViewEnabled && viewEmpty !=null) {
@@ -85,7 +96,7 @@ public class RelativeListOverlay extends RelativeOverlay implements EasyRecycler
 
     /**
      * Here you can enable/disable the showing of an empty view for adapters with no items.
-     * By default it's enabled
+     * By default it's enabled and it shows when there are 0 items
      * @param enable
      */
     public void setEmptyViewEnabled(boolean enable){

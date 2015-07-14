@@ -26,5 +26,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:22.2.0'
 
     compile "com.github.andkulikov:transitions-everywhere:1.4.0"
-    compile 'com.github.c0nnector:easyrecyclerview:1.6.1'
+    compile 'com.github.c0nnector:easyrecyclerview:1.6.1+'
 }
