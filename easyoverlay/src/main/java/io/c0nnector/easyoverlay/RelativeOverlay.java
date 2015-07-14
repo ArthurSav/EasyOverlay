@@ -2,6 +2,7 @@ package io.c0nnector.easyoverlay;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
+import android.support.v7.widget.RecyclerView;
 import android.transitions.everywhere.Fade;
 import android.transitions.everywhere.Slide;
 import android.transitions.everywhere.Transition;
@@ -13,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
+import com.easyrecyclerview.easyrecyclerview.views.EasyRecyclerView;
+
 import java.util.ArrayList;
 
 import io.c0nnector.easyoverlay.views.ViewError;
@@ -22,6 +25,7 @@ import io.c0nnector.easyoverlay.views.ViewLoading;
  * Makes it easier to add overlay views like 'loading, errors, custom' etc...
  */
 public class RelativeOverlay extends RelativeLayout {
+
 
     /**
      * Animation used when swapping views. Default is fade animation
@@ -175,4 +179,7 @@ public class RelativeOverlay extends RelativeLayout {
         showLoadingView("");
     }
 
+    public boolean hasOverlays(){
+        return addedViews.size() > 0;
+    }
 }
