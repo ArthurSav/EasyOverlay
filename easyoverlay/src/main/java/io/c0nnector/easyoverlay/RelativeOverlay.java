@@ -26,7 +26,6 @@ import io.c0nnector.easyoverlay.views.ViewLoading;
  */
 public class RelativeOverlay extends RelativeLayout {
 
-
     /**
      * Animation used when swapping views. Default is fade animation
      */
@@ -179,7 +178,52 @@ public class RelativeOverlay extends RelativeLayout {
         showLoadingView("");
     }
 
+    /**
+     * @return true, if there's an overlay showing
+     */
     public boolean hasOverlays(){
         return addedViews.size() > 0;
     }
+
+    /**
+     * True if the loading view is visible
+     * @return
+     */
+    public boolean isShowingLoadingView(){
+
+        if (addedViews.size() >0) {
+
+            for (View v: addedViews) {
+                if (v instanceof ViewLoading) return true;
+            }
+        }
+
+        return false;
+    }
+
+
+    /**
+     * True is the error view is visible
+     * @return
+     */
+    public boolean isShowingErrorView(){
+
+        if (addedViews.size() >0) {
+
+            for (View v: addedViews) {
+                if (v instanceof ViewLoading) return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     * True if a custom view is visible
+     * @return
+     */
+    public boolean isShowingCustomView(){
+        return !isShowingLoadingView() && !isShowingErrorView() && addedViews.size() > 0;
+    }
+
+
 }
