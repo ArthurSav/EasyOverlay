@@ -82,7 +82,7 @@ public class RelativeOverlay extends RelativeLayout {
      *
      * @param swapView
      */
-    public void addOverlay(View swapView) {
+    public synchronized void addOverlay(View swapView) {
 
         //remove any previous view
         removeOverlays();
@@ -104,6 +104,7 @@ public class RelativeOverlay extends RelativeLayout {
             TransitionManager.beginDelayedTransition(getFrame(), getOverlayAnimation());
 
             getFrame().removeAllViews();
+            addedViews.clear();
         }
     }
 
