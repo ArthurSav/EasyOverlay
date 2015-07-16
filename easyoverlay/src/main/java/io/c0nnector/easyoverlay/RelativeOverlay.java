@@ -8,6 +8,7 @@ import android.transitions.everywhere.Slide;
 import android.transitions.everywhere.Transition;
 import android.transitions.everywhere.TransitionManager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -90,7 +91,12 @@ public class RelativeOverlay extends RelativeLayout {
         //animate change
         TransitionManager.beginDelayedTransition(getFrame(), getOverlayAnimation());
 
-        getFrame().addView(swapView);
+        //todo - Fix this, someday. Sometimes it will throw an exception 'You must call removeView() on the childs parent first'
+        try {
+            getFrame().addView(swapView);
+        } catch (IllegalStateException e) {
+
+        }
         addedViews.add(swapView);
     }
 

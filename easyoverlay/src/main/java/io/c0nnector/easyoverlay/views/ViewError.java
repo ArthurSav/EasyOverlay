@@ -29,6 +29,7 @@ public class ViewError extends BaseOverlayView {
 
     @Override
     protected void init(Context context) {
+
         inflate(context, R.layout.layout_error);
 
         txtError = (TextView) findViewById(R.id.txtError);

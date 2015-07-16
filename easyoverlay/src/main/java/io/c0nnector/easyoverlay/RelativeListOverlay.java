@@ -112,9 +112,9 @@ public class RelativeListOverlay extends RelativeOverlay implements EasyRecycler
 
         viewEmpty = new ViewEmpty(getContext());
 
-        viewEmpty.setErrorMessage(message);
+        viewEmpty.setEmptyMessage(message);
 
-        if (iconId > 0) viewEmpty.setErrorImage(iconId);
+        if (iconId !=-1 ) viewEmpty.setImage(iconId);
     }
 
 
