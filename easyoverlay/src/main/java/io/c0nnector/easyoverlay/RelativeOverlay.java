@@ -87,9 +87,10 @@ public class RelativeOverlay extends RelativeLayout {
         //remove any previous view
         removeOverlays();
 
+        //animate change
         TransitionManager.beginDelayedTransition(getFrame(), getOverlayAnimation());
-        getFrame().addView(swapView);
 
+        getFrame().addView(swapView);
         addedViews.add(swapView);
     }
 
@@ -98,11 +99,12 @@ public class RelativeOverlay extends RelativeLayout {
      */
     public void removeOverlays() {
 
-        if (getFrame().getChildCount() > 0 && addedViews.size() > 0) {
+        if (getFrame().getChildCount() > 0) {
 
             //animation
             TransitionManager.beginDelayedTransition(getFrame(), getOverlayAnimation());
 
+            //clear
             getFrame().removeAllViews();
             addedViews.clear();
         }
