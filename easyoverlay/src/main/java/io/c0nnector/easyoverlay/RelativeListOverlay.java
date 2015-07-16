@@ -73,18 +73,19 @@ public class RelativeListOverlay extends RelativeOverlay implements EasyRecycler
      * @param i
      */
     @Override
-    public void onAdapterChange(RecyclerView.Adapter adapter, int i) {
+    public synchronized void onAdapterChange(RecyclerView.Adapter adapter, int i) {
 
-        //no items - add empty view, if set
+        //remove any previous overlays
+        if (hasOverlays()) removeOverlays();
+
+        //no adapter items - add empty view, if set
         if (i == 0) {
 
             if (hasEmptyViewEnabled && viewEmpty !=null) {
+
                 addOverlay(viewEmpty);
             }
         }
-
-        //remove any previous overlays, we have adapter items
-        else if (hasOverlays()) removeOverlays();
     }
 
     /*****************************************************
