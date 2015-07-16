@@ -26,7 +26,7 @@ public abstract class BaseOverlayView extends RelativeLayout {
 
     public View inflate(Context context, @LayoutRes int layoutId){
 
-        View view = inflate(context, layoutId, null);
+        View view = inflate(context, layoutId, this);
 
         return view;
     }
