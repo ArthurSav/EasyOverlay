@@ -2,20 +2,18 @@ package io.c0nnector.easyoverlay;
 
 import android.content.Context;
 import android.support.annotation.DrawableRes;
-import android.support.v7.widget.RecyclerView;
+import android.support.annotation.LayoutRes;
 import android.transitions.everywhere.Fade;
 import android.transitions.everywhere.Slide;
 import android.transitions.everywhere.Transition;
 import android.transitions.everywhere.TransitionManager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
-
-import com.easyrecyclerview.easyrecyclerview.views.EasyRecyclerView;
 
 import java.util.ArrayList;
 
@@ -83,7 +81,7 @@ public class RelativeOverlay extends RelativeLayout {
      *
      * @param swapView
      */
-    public synchronized void addOverlay(View swapView) {
+    public synchronized View addOverlay(View swapView) {
 
         //remove any previous view
         removeOverlays();
@@ -98,6 +96,17 @@ public class RelativeOverlay extends RelativeLayout {
 
         }
         addedViews.add(swapView);
+
+        return swapView;
+    }
+
+    public synchronized View addOverlay(@LayoutRes int layoutResId){
+
+        View v = LayoutInflater.from(getContext()).inflate(layoutResId, this, false);
+
+        addOverlay(v);
+
+        return v;
     }
 
     /**
@@ -221,6 +230,17 @@ public class RelativeOverlay extends RelativeLayout {
 
             for (View v: addedViews) {
                 if (v instanceof ViewLoading) return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean containsView(Class viewClass) {
+
+        if (addedViews.size() >0) {
+
+            for (View v: addedViews) {
+                if (viewClass.isInstance(v)) return true;
             }
         }
         return false;
