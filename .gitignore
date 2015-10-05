@@ -4,10 +4,6 @@
 /.idea/libraries
 .DS_Store
 /build
-/captures
 
-
-gradle.properties
-gradle/wrapper/gradle-wrapper.properties
 .idea
 EasyOverlay.iml
