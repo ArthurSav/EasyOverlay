@@ -4,11 +4,9 @@ import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
 import android.transitions.everywhere.Fade;
-import android.transitions.everywhere.Slide;
 import android.transitions.everywhere.Transition;
 import android.transitions.everywhere.TransitionManager;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -83,13 +81,12 @@ public class RelativeOverlay extends RelativeLayout {
      */
     public synchronized View addOverlay(View swapView) {
 
+        TransitionManager.beginDelayedTransition(this, new Fade());
+
         //remove any previous view
         removeOverlays();
 
-        //animate change
-        TransitionManager.beginDelayedTransition(getFrame(), getOverlayAnimation());
-
-        //todo - Fix this, someday. Sometimes it will throw an exception 'You must call removeView() on the childs parent first'
+        //todo - Fix this, someday. Sometimes it will throw an exception 'You must call removeView() on the child's parent first'
         try {
             getFrame().addView(swapView);
         } catch (IllegalStateException e) {
@@ -116,11 +113,9 @@ public class RelativeOverlay extends RelativeLayout {
 
         if (getFrame().getChildCount() > 0) {
 
-            //animation
-            TransitionManager.beginDelayedTransition(getFrame(), getOverlayAnimation());
-
             //clear
             getFrame().removeAllViews();
+
             addedViews.clear();
         }
     }
@@ -147,7 +142,6 @@ public class RelativeOverlay extends RelativeLayout {
         this.transition = transition;
     }
 
-
     /*****************************************************
      * ---------------- * Default views * --------------------
      *
@@ -161,9 +155,6 @@ public class RelativeOverlay extends RelativeLayout {
      * @param errorMessage
      */
     public void showErrorView(@DrawableRes int imageId, String errorMessage){
-
-        //slide animation
-        setOverlayAnimation(new Slide(Gravity.TOP));
 
         ViewError viewError = new ViewError(getContext());
 
@@ -181,9 +172,6 @@ public class RelativeOverlay extends RelativeLayout {
      * A view with a progressbar and with or without a message
      */
     public void showLoadingView(String message){
-
-        //fade animation
-        setOverlayAnimation(new Fade());
 
         ViewLoading viewLoading = new ViewLoading(getContext());
 
