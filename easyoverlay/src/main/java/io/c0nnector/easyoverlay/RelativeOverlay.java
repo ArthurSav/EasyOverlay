@@ -23,6 +23,8 @@ import io.c0nnector.easyoverlay.views.ViewLoading;
  */
 public class RelativeOverlay extends RelativeLayout {
 
+    private boolean isAnimationRunning = false;
+
     /**
      * Animation used when swapping views. Default is fade animation
      */
@@ -81,7 +83,7 @@ public class RelativeOverlay extends RelativeLayout {
      */
     public synchronized View addOverlay(View swapView) {
 
-        TransitionManager.beginDelayedTransition(this, new Fade());
+        beforeAnimation();
 
         //remove any previous view
         removeOverlays();
@@ -93,6 +95,8 @@ public class RelativeOverlay extends RelativeLayout {
 
         }
         addedViews.add(swapView);
+
+        afterAnimation();
 
         return swapView;
     }
@@ -113,10 +117,14 @@ public class RelativeOverlay extends RelativeLayout {
 
         if (getFrame().getChildCount() > 0) {
 
+            if (!isAnimationRunning()) beforeAnimation();
+
             //clear
             getFrame().removeAllViews();
 
             addedViews.clear();
+
+            afterAnimation();
         }
     }
 
@@ -140,6 +148,20 @@ public class RelativeOverlay extends RelativeLayout {
      */
     public void setOverlayAnimation(Transition transition) {
         this.transition = transition;
+    }
+
+    private void beforeAnimation(){
+        this.isAnimationRunning = true;
+
+        TransitionManager.beginDelayedTransition(this, new Fade());
+    }
+
+    private void afterAnimation(){
+        this.isAnimationRunning = false;
+    }
+
+    private boolean isAnimationRunning(){
+        return isAnimationRunning;
     }
 
     /*****************************************************
