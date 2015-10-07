@@ -3,15 +3,17 @@ package io.c0nnector.easyoverlay;
 import android.content.Context;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.LayoutRes;
-import android.transitions.everywhere.Fade;
-import android.transitions.everywhere.Transition;
-import android.transitions.everywhere.TransitionManager;
+
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import com.transitionseverywhere.Fade;
+import com.transitionseverywhere.Transition;
+import com.transitionseverywhere.TransitionManager;
 
 import java.util.ArrayList;
 
